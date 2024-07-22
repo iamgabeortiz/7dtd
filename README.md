@@ -121,7 +121,7 @@ If utilizing `ExecStartPre` then make sure to call the correct branch of the sof
 
 ```bash
 [Unit]
-Description=& Days to Die Dedicated Server
+Description=7 Days to Die Dedicated Server
 Wants=network-online.target
 After=network-online.target
 
@@ -144,7 +144,7 @@ WantedBy=multi-user.target
 
 ```bash
 [Unit]
-Description=& Days to Die Dedicated Server
+Description=7 Days to Die Dedicated Server
 Wants=network-online.target
 After=network-online.target
 
