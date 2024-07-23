@@ -6,14 +6,14 @@ These Instructions are based on [PimpMyLifeUp's](https://pimylifeup.com/7-days-t
 
 ### 1. Update your instance.
 
-```bash
+```Shell
 sudo apt update
 sudo apt upgrade -y
 ```
 
 ### 2. Install package dependencies.
 
-```bash
+```Shell
 sudo apt install software-properties-common
 ```
 
@@ -21,25 +21,25 @@ sudo apt install software-properties-common
 
 ### 3. Install i386 architecture.
 
-```bash
+```Shell
 sudo dpkg --add-architecture i386
 ```
 
 ### 4. Add additional repositories.
 
-```bash
+```Shell
 sudo apt-add-repository multiverse
 ```
 
 ### 5. Update package manager for new repo.
 
-```bash
+```Shell
 sudo apt update
 ```
 
 ### 6. Install SteamCMD.
 
-```bash
+```Shell
 sudo apt install steamcmd
 ```
 
@@ -47,19 +47,19 @@ sudo apt install steamcmd
 
 ### 7. Create 7days user.
 
-```bash
+```Shell
 sudo useradd -m 7days
 ```
 
 ### 8. Switch to new user terminal.
 
-```bash
+```Shell
 sudo -u 7days -s
 ```
 
 ### 9. Switch to root directory.
 
-```bash
+```Shell
 cd ~
 ```
 
@@ -69,13 +69,13 @@ cd ~
 
 #### Stable Release
 
-```bash
+```Shell
 /usr/games/steamcmd +@sSteamCmdForcePlatformType linux +force_install_dir "/home/7days/server" +login anonymous +app_update 294420 -validate +quit
 ```
 
 #### Latest Experimental Release
 
-```bash
+```Shell
 /usr/games/steamcmd +@sSteamCmdForcePlatformType linux +force_install_dir "/home/7days/server" +login anonymous +app_update 294420 -beta latest_experimental -validate +quit
 ```
 
@@ -83,7 +83,7 @@ cd ~
 
 ### 11. Edit/Set the server configurations.
 
-```bash
+```Shell
 nano /home/7days/server/serverconfig.xml
 ```
 
@@ -99,13 +99,13 @@ nano /home/7days/server/serverconfig.xml
 
 ### 13. Exit 7days user.
 
-```bash
+```Shell
 exit
 ```
 
 ### 14. Create service file to manage 7DTD start/stop.
 
-```bash
+```Shell
 sudo nano /etc/systemd/system/7daystodie.service 
 ```
 
@@ -119,7 +119,7 @@ Keep your serverconfig.xml in the user root to prevent overwriting by updates.
 
 If utilizing `ExecStartPre` then make sure to call the correct branch of the software.
 
-```bash
+```Shell
 [Unit]
 Description=7 Days to Die Dedicated Server
 Wants=network-online.target
@@ -142,7 +142,7 @@ WantedBy=multi-user.target
 
 #### Do Not Update 7DTD Software at Service Start
 
-```bash
+```Shell
 [Unit]
 Description=7 Days to Die Dedicated Server
 Wants=network-online.target
@@ -170,13 +170,13 @@ CTRL + X > Y, and then ENTER
 
 ### 17. Enable your newly created service.
 
-```bash
+```Shell
 sudo systemctl enable 7daystodie
 ```
 
 ### 18. Start the 7DTD service.
 
-```bash
+```Shell
 sudo systemctl start 7daystodie
 ```
 
