@@ -52,7 +52,7 @@ useradd -m 7days
 echo
 
 echo "8. Switch to new user terminal."
-#sudo -u 7days -s
+# sudo -u 7days -s
 #-----------------------------------------------------------------------#
 # This section is augmentated for running as a single shell script.
 #-----------------------------------------------------------------------#
@@ -105,13 +105,13 @@ EOF
 echo
 
 echo "14. Create service file to manage 7DTD start/stop."
-touch /etc/systemd/system/7daystodie.service 
+touch /etc/systemd/system/7daystodie.service
 echo
 
 echo "15. Add this to your service file based on your needs."
 echo
 
-#echo "Update 7DTD Software at Service Start"
+# echo "Update 7DTD Software at Service Start"
 #-----------------------------------------------------------------------#
 # Choose this option if you want the server to update 7 Days to Die
 # software before starting the service.  Keep your serverconfig.xml in
@@ -119,7 +119,7 @@ echo
 # `ExecStartPre` then make sure to call the correct branch of the software.
 #-----------------------------------------------------------------------#
 
-#{
+# {
 #    echo "[Unit]"
 #    echo "Description=7 Days to Die Dedicated Server"
 #    echo "Wants=network-online.target"
@@ -138,8 +138,8 @@ echo
 #    echo
 #    echo "[Install]"
 #    echo "WantedBy=multi-user.target"
-#} > /etc/contab
-#echo
+# } > /etc/systemd/system/7daystodie.service
+# echo
 
 echo "Do Not Update 7DTD Software at Service Start"
 
@@ -161,7 +161,7 @@ echo "Do Not Update 7DTD Software at Service Start"
     echo
     echo "[Install]"
     echo "WantedBy=multi-user.target"
-} > /etc/contab
+} > /etc/systemd/system/7daystodie.service
 echo
 
 echo "16. Check that the config file saved correctly"
