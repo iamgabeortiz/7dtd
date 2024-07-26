@@ -1,8 +1,15 @@
 # shellcheck shell=bash
 
+
+
 # 7 Days To Die
 
 ## Server Management
+function update_aliases() {
+    aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/7days/.bash_aliases .bash_aliases
+    source .bash_alises
+}
+
 alias start_7dtd="systemctl start 7daystodie"
 alias stop_7dtd="systemctl stop 7daystodie"
 alias status_7dtd="systemctl status 7daystodie"
@@ -22,6 +29,13 @@ function update_config_files() {
     chown 7days:7days /home/7days
     aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/7days/serveradmin.xml /home/7days/.local/share/7DaysToDie/Saves/serveradmin.xml
     chown 7days:7days /home/7days/.local/share/7DaysToDie/Saves/serveradmin.xml
+}
+
+function update_mods() {
+    aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-12CraftQueue /home/7days/server/Mods/KHV1-12CraftQueue
+    aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-3SlotForge /home/7days/server/Mods/KHV1-3SlotForge
+    aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-60BBM /home/7days/server/Mods/KHV1-60BBM
+    chown 7days:7days /home/7days/server/Mods
 }
 
 # AWS
