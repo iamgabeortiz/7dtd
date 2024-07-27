@@ -8,7 +8,7 @@
 function update_aliases() {
     aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/7days/.bash_aliases .bash_aliases
     # shellcheck source=/dev/null
-    source .bash_alises
+    source .bash_aliases
 }
 
 alias start_7dtd="systemctl start 7daystodie"
