@@ -1,12 +1,13 @@
 # shellcheck shell=bash
 
-
+# All these commands run from root.
 
 # 7 Days To Die
 
 ## Server Management
 function update_aliases() {
     aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/7days/.bash_aliases .bash_aliases
+    # shellcheck source=/dev/null
     source .bash_alises
 }
 
@@ -32,9 +33,9 @@ function update_config_files() {
 }
 
 function update_mods() {
-    aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-12CraftQueue /home/7days/server/Mods/KHV1-12CraftQueue
-    aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-3SlotForge /home/7days/server/Mods/KHV1-3SlotForge
-    aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-60BBM /home/7days/server/Mods/KHV1-60BBM
+    aws s3 cp --recursive s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-12CraftQueue /home/7days/server/Mods/KHV1-12CraftQueue
+    aws s3 cp --recursive s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-3SlotForge /home/7days/server/Mods/KHV1-3SlotForge
+    aws s3 cp --recursive s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-60BBM /home/7days/server/Mods/KHV1-60BBM
     chown 7days:7days /home/7days/server/Mods
 }
 
