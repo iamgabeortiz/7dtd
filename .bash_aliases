@@ -12,7 +12,12 @@ function update_aliases() {
 }
 
 alias start_7dtd="systemctl start 7daystodie"
-alias stop_7dtd="systemctl stop 7daystodie"
+alias save_7dtd="echo 'saveworld' | /usr/bin/telnet 127.0.0.1 8081"
+function stop_7dtd() {
+    save_7dtd
+    systemctl stop 7daystodie
+}
+
 alias status_7dtd="systemctl status 7daystodie"
 alias connect_to_server="telnet 127.0.0.1 8081"
 alias show_logs="find /home/7days/server/7DaysToDieServer_Data -type f -name \"output_log__*.txt\" -exec ls -t1 {} + | head -1 | xargs -r tail"
