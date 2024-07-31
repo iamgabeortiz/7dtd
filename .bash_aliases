@@ -44,6 +44,7 @@ function update_mods() {
     aws s3 cp --recursive s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-3SlotForge /home/7days/server/Mods/KHV1-3SlotForge
     aws s3 cp --recursive s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-60BBM /home/7days/server/Mods/KHV1-60BBM
     chown 7days:7days /home/7days/server/Mods
+    ll /home/7days/server/Mods/
 }
 
 # AWS
