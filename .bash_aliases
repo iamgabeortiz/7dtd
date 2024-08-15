@@ -1,11 +1,12 @@
 # shellcheck shell=bash
 
-# All these commands run from root.
+# All of these commands run as root.
 
 # 7 Days To Die
 
 ## Server Management
 function update_aliases() {
+    cd ~ || return
     aws s3 cp s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/7days/.bash_aliases .bash_aliases
     # shellcheck source=/dev/null
     source .bash_aliases
@@ -16,11 +17,14 @@ alias save_7dtd="echo 'saveworld' | /usr/bin/telnet 127.0.0.1 8081"
 function stop_7dtd() {
     save_7dtd
     systemctl stop 7daystodie
+    sleep 5
+    backup_7dtd
 }
 
 alias status_7dtd="systemctl status 7daystodie"
 alias connect_to_server="telnet 127.0.0.1 8081"
 alias show_logs="find /home/7days/server/7DaysToDieServer_Data -type f -name \"output_log__*.txt\" -exec ls -t1 {} + | head -1 | xargs -r tail"
+alias count_logs="find /home/7days/server/7DaysToDieServer_Data -type f -name \"output_log__*.txt\" -exec ls -t1 {} + | wc -l"
 
 function update_stable_7dtd() {
     /usr/games/steamcmd +@sSteamCmdForcePlatformType linux +force_install_dir "/home/7days/server" +login anonymous +app_update 294420 -validate +quit
@@ -29,6 +33,11 @@ function update_stable_7dtd() {
 
 function update_exp_7dtd() {
     /usr/games/steamcmd +@sSteamCmdForcePlatformType linux +force_install_dir "/home/7days/server" +login anonymous +app_update 294420 -beta latest_experimental -validate +quit
+    chown -R 7days:7days /home/7days/server
+}
+
+function update_public_7dtd() {
+    /usr/games/steamcmd +@sSteamCmdForcePlatformType linux +force_install_dir "/home/7days/server" +login anonymous +app_update 294420 -beta public -validate +quit
     chown -R 7days:7days /home/7days/server
 }
 
@@ -45,6 +54,14 @@ function update_mods() {
     aws s3 cp --recursive s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/KhaineV1XMLModlets/KHV1-60BBM /home/7days/server/Mods/KHV1-60BBM
     chown 7days:7days /home/7days/server/Mods
     ll /home/7days/server/Mods/
+}
+
+function backup_7dtd() {
+    cd ~ || return
+    fdate=$(date '+%Y-%m-%d')
+    tar -czvf "7dtd_backup_$fdate.tar.gz" /home/7days/.local/share/7DaysToDie
+    aws s3 cp "7dtd_backup_$fdate.tar.gz" "s3://myawsstack-mains3bucket5c2e6ab2-1s84nhxrj9ksj/7dtd-backups/7dtd_backup_$fdate.tar.gz"
+    rm "7dtd_backup_$fdate.tar.gz"
 }
 
 # AWS
