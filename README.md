@@ -2,6 +2,21 @@
 
 These Instructions are based on [PimpMyLifeUp's](https://pimylifeup.com/7-days-to-die-server-linux/) fantastic instructions.
 
+## Minimum System Specifications*
+
+* 8 GB of RAM
+* 8 GB Swap File
+
+_*These specifications will support 2-4 players without any issues._
+
+### This is what I am currently running from [Linode.com](https://www.linode.com/pricing/) under Shared CPU Plans.
+
+|Plan|$/Mo|$/Hr|RAM|CPUs|Storage|Transfer|Network In/Out|
+|----|----|----|---|----|-------|--------|--------------|
+|Linode 8 GB|$48*|$0.072|8 GB|4|160 GB|5 TB|40/5 Gbps|
+
+_* Only running the server when playing is a great way to save on monthly running costs._
+
 ## Preparing your Linux System
 
 ### 1. Update your instance.
